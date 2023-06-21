@@ -1,0 +1,31 @@
+#!/bin/bash
+if [ "$1" == "" ]; then 
+	TAG=2023.05
+else
+	TAG=$1
+fi
+
+cd `dirname $0`
+
+BRDIR=buildroot-${TAG}
+
+cd `dirname $0`
+cd ..
+
+if [ -d $BRDIR ]; then
+	echo "Saving current buildroot"
+	rm -rf $BRDIR.bak
+	mv $BRDIR $BRDIR.bak
+fi
+
+echo "Checking out buildoot tag ${TAG} from Github"
+git clone https://github.com/buildroot/buildroot $BRDIR
+
+echo "Checking out a known-good release"
+pushd $BRDIR
+git checkout $TAG
+
+echo "Symlinking to buildroot-pbos"
+rm buildroot-pbos
+ln -s $BRDIR buildroot-pbos
+

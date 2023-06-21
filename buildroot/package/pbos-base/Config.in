@@ -1,0 +1,13 @@
+config BR2_PACKAGE_PBOS_BASE
+	bool "pbos-base"
+        help
+          install base PinballOS prerequisites
+
+	select BR2_PACKAGE_DROPBEAR
+	select BR2_PACKAGE_DROPBEAR
+	select BR2_PACKAGE_DROPBEAR_CLIENT
+	select BR2_PACKAGE_DROPBEAR_DISABLE_REVERSEDNS
+	select BR2_PACKAGE_DROPBEAR_SMALL
+	select BR2_PACKAGE_BUSYBOX_SHOW_OTHERS
+	select BR2_PACKAGE_BASH
+	

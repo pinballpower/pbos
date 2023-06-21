@@ -1,0 +1,8 @@
+config BR2_PACKAGE_DMDREADER_PICO
+	bool "dmdreader-pico"
+        help
+          RP2040 firmware for DMD interface
+
+	select BR2_PACKAGE_OPENOCD
+	select BR2_PACKAGE_OPENOCD_BCM2835
+	select BR2_PACKAGE_OPENOCD_SYSFS
