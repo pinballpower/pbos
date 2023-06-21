@@ -1,0 +1,9 @@
+config BR2_PACKAGE_ENABLEWIFI
+        bool "enablewifi"
+        help
+          add WiFi packages
+
+ 	select BR2_PACKAGE_IW
+ 	select BR2_PACKAGE_WPA_SUPPLICANT
+ 	select BR2_PACKAGE_WPA_SUPPLICANT_NL80211
+ 	select BR2_PACKAGE_WPA_SUPPLICANT_PASSPHRASE

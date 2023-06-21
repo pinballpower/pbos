@@ -1,6 +1,7 @@
 comment "Base packages"
 source "$BR2_EXTERNAL_PBOS_PATH/package/pbos-base/Config.in"
 source "$BR2_EXTERNAL_PBOS_PATH/package/configtxt/Config.in"
+source "$BR2_EXTERNAL_PBOS_PATH/package/enablewifi/Config.in"
 
 comment "DMDReader"
 source "$BR2_EXTERNAL_PBOS_PATH/package/dmdreader/Config.in"
