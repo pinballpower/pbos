@@ -9,7 +9,8 @@ case "$1" in
         	echo "Programming RP2040"
 		cd /firmware
 		openocd -f raspberrypi-swd-dmdreader.cfg -f target/rp2040.cfg -c "program dmdreader.elf verify reset exit"
-		if [ "$?" == "0" ]; then 
+		if [ "$?" == "0" ]; then
+			echo "RP2040 firmware programmed" > /dev/kmsg
 			touch /firmware/2040.programmed
 		fi
 	fi
