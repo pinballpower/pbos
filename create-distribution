@@ -1,0 +1,9 @@
+#!/bin/sh
+cd `dirname $0`
+
+DISTRI=dist/pbos-$1.img
+./create-config $1
+./clean $1
+./compile $1
+cp ../pbos-$1/images/sdcard.img $DISTRI
+bzip2  $DISTRI
