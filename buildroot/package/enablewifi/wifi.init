@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Make sure /boot is mounted
+if [! -f /boot/config.txt ]; then
+ mkdir /boot
+ mount /dev/mmcblk0p1 /boot
+fi
+
+# WiFi interface name
+WIFI_INTERFACE="wlan0"
+
+# Path to the wpa_supplicant configuration file
+if [-f /boot/wpa_supplicant.conf ]; then
+ WPA_SUPPLICANT_CONF="/boot/wpa_supplicant.conf"
+else
+ WPA_SUPPLICANT_CONF="/etc/wpa_supplicant.conf"
+fi
+
+# Path to the PID file for wpa_supplicant
+WPA_SUPPLICANT_PID="/var/run/wpa_supplicant.pid"
+
+# Start wpa_supplicant in the background using the configuration file
+wpa_supplicant -B -i "$WIFI_INTERFACE" -c "$WPA_SUPPLICANT_CONF" -P "$WPA_SUPPLICANT_PID"
+
+# Wait for the wireless interface to be ready
+while ! iw dev "$WIFI_INTERFACE" info >/dev/null 2>&1; do
+    sleep 1
+done
+
+# Obtain an IP address using DHCP
+udhcpc -i "$WIFI_INTERFACE"
