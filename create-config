@@ -8,6 +8,12 @@ else
  VERSION=$1
 fi
 
+KNOWNVERSION=`echo "2 3 4 0w zero2w" | grep $VERSION`
+if [ "$KNOWNVERSION" == "" ]; then
+ echo "Unsupported version $VERSION, aborting"
+ exit 1
+fi
+
 echo "Building for Pi${VERSION}"
 
 BRDIR=`./brdir $VERSION`
@@ -23,6 +29,7 @@ cp $SRCDIR/.config $CONFIG
 echo "Apply base config"
 cd $MYDIR
 cat config.base-config >> $BRDIR/.config
+cat config.default-packages >> $BRDIR/.config
 pushd $SRCDIR
 make O=$BRDIR BR2_EXTERNAL=../pbos/buildroot olddefconfig
 popd
