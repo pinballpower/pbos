@@ -1,0 +1,5 @@
+config BR2_PACKAGE_CONFIGTXT
+	bool "configtxt"
+        help
+          enable all necessary modules in config.txt
+	depends on BR2_PACKAGE_RPI_FIRMWARE
