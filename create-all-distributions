@@ -1,0 +1,11 @@
+#!/bin/sh
+cd `dirname $0`
+
+# Do not use local WiFi config to build a distribution
+mv buildroot/package/enablewifi/wpa_supplicant.conf ./wpa_supplicant.conf
+
+for i in 3 4 zero2w; do
+	./create-distribution $i
+done
+
+mv ./wpa_supplicant.conf buildroot/package/enablewifi/wpa_supplicant.conf
