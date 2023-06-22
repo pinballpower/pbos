@@ -1,0 +1,32 @@
+#!/bin/sh
+
+case "$1" in
+    start)
+        # Add your startup commands here
+        if [ -f "/firmware/2040.programmed" ]; then
+  		echo "RP2040 is already programmed, skipping firmware write"
+	else
+        	echo "Programming RP2040"
+		cd /firmware
+		openocd -f raspberrypi-swd-dmdreader.cfg -f target/rp2040.cfg -c "program dmdreader.elf verify reset exit"
+		if [ "$?" == "0" ]; then 
+			touch /firmware/2040.programmed
+		fi
+	fi
+        ;;
+    stop)
+        # Add your shutdown commands here
+        echo "Stopping myinit"
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
+

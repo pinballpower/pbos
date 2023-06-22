@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cd `dirname $0`
+MYDIR=`pwd`
+cd $MYDIR
+
+if [ "$1" == "" ]; then
+ VERSION=`cat .piversion`
+ echo No version given, assuming Pi$VERSION
+else
+ VERSION=$1
+fi
+
+if [ "$BRSRCDIR" == "" ]; then
+ BRSRCDIR=../buildroot-pbos
+fi
+
+echo "Apply overrides from config.override"
+cd $MYDIR
+cat config.override >> $BRDIR/.config
+
+BRDIR=`./brdir $VERSION`
+echo "Configuring in $BRDIR"
+cd $MYDIR
+cd $BRSRCDIR
+make O=$BRDIR BR2_EXTERNAL=../pbos/buildroot menuconfig
+
+echo "Apply overrides from config.override again"
+cd $MYDIR
+cat config.override >> $BRDIR/.config
