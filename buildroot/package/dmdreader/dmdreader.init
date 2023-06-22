@@ -1,0 +1,56 @@
+#!/bin/sh
+DAEMON="/usr/bin/dmdreader"  # Path to the daemon executable
+PIDFILE="/var/run/dmdreader.pid"  # Path to the PID file
+
+# Function to start the daemon
+do_start() {
+    # Check if the daemon is already running
+    if [ -f "$PIDFILE" ] && kill -0 $(cat "$PIDFILE") 2>/dev/null; then
+        echo "DMDReader is already running."
+        return 0
+    fi
+
+    echo "Starting DMDReader..."
+    # Start the daemon as a background process
+    "$DAEMON" &
+    # Store the process ID in the PID file
+    echo $! > "$PIDFILE"
+    echo "DMDReader started."
+}
+
+# Function to stop the daemon
+do_stop() {
+    # Check if the PID file exists
+    if [ ! -f "$PIDFILE" ]; then
+        echo "DMDReader is not running."
+        return 0
+    fi
+
+    echo "Stopping daemon..."
+    # Send the termination signal to the daemon process
+    kill $(cat "$PIDFILE") 2>/dev/null
+    # Remove the PID file
+    rm "$PIDFILE"
+    echo "DMDReader stopped."
+}
+
+# Handle command-line arguments
+case "$1" in
+    start)
+        do_start
+        ;;
+    stop)
+        do_stop
+        ;;
+    restart)
+        do_stop
+        sleep 1  # Wait for the daemon to stop before starting it again
+        do_start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
