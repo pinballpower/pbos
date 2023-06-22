@@ -9,13 +9,13 @@ TS=`date +%Y%m%d`
 echo $TS > buildroot/VERSION
 
 if [ "$1" == "" ]; then
- VERSION=`cat .piversion`
+ VERSION=4
  echo No version given, assuming Pi$VERSION
 else
  VERSION=$1
 fi
 
-KNOWNVERSION=`echo "2 3 4 0w" | grep $VERSION`
+KNOWNVERSION=`echo "2 3 4 0w zero2w" | grep $VERSION`
 if [ "$KNOWNVERSION" == "" ]; then
  echo "Unsupported version $VERSION, aborting"
  exit 1

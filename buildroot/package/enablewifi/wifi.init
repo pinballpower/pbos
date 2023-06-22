@@ -1,13 +1,20 @@
 #!/bin/sh
 
+# Check if there is a WiFi interface
+WIFI_INTERFACE=$(iw dev | awk '/Interface/ {print $2}')
+if [ "$WIFI_INTERFACE" == "" ]; then
+	echo "No WiFi interface to configure"
+	exit 0
+else
+	echo "Configuring $WIFI_INTERFACE"
+fi
+
+
 # Make sure /boot is mounted
 if [! -f /boot/config.txt ]; then
  mkdir /boot
  mount /dev/mmcblk0p1 /boot
 fi
-
-# WiFi interface name
-WIFI_INTERFACE="wlan0"
 
 # Path to the wpa_supplicant configuration file
 if [-f /boot/wpa_supplicant.conf ]; then
