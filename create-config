@@ -1,0 +1,28 @@
+#!/bin/bash
+cd `dirname $0`
+MYDIR=`pwd`
+
+if [ "$1" == "" ]; then
+ VERSION=4
+else
+ VERSION=$1
+fi
+
+echo "Building for Pi${VERSION}"
+
+BRDIR=`./brdir $VERSION`
+CONFIG=$BRDIR/.config
+SRCDIR=../buildroot-pbos
+
+pushd $SRCDIR
+make raspberrypi${VERSION}_defconfig
+popd
+
+cp $SRCDIR/.config $CONFIG
+
+echo "Apply base config"
+cd $MYDIR
+cat config.base-config >> $BRDIR/.config
+pushd $SRCDIR
+make O=$BRDIR BR2_EXTERNAL=../pbos/buildroot olddefconfig
+popd
