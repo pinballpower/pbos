@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DMDREADER_VERSION = 400de07409c510dc9ead761c8cabad8281293b40
+DMDREADER_VERSION = e1e448f7ca11a85241abc3a5e0b3cf9faed97128
 DMDREADER_SITE = https://github.com/pinballpower/code_dmdreader
 DMDREADER_SITE_METHOD = git
 DMDREADER_GIT_SUBMODULES = YES
