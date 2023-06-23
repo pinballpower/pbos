@@ -17,7 +17,7 @@ endif
 
 define MYCONFIG
 	echo $(@D)
-	cp $(BR2_EXTERNAL_PBOS_PATH)/../CMakeLists.txt $(@D)
+	cp $(BR2_EXTERNAL_PBOS_PATH)/../CMakeLists.txt-dmdreader $(@D)
 endef
 
 define CONFIGDONE
