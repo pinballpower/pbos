@@ -8,3 +8,13 @@ config BR2_PACKAGE_DMDREADER
 	select BR2_PACKAGE_BOOST_LOG
 	select BR2_PACKAGE_LIBGPIOD
 
+	select BR2_PACKAGE_GLM
+        select BR2_INSTALL_LIBSTDCPP
+
+config BR2_PACKAGE_DMDREADER_OGL
+        bool "enable OpenGL ES support"
+        help
+          enables support for OpenGL ES displays on Pi4
+        depends on BR2_PACKAGE_DMDREADER
+	depends on BR2_PACKAGE_MESA3D
+	depends on BR2_PACKAGE_LIBDRM
