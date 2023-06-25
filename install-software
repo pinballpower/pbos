@@ -1,0 +1,3 @@
+#!/bin/sh
+sudo apt update
+sudo apt install -y make gcc cmake g++ libncurses-dev unzip bzip2
