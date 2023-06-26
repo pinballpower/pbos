@@ -8,3 +8,26 @@ config BR2_PACKAGE_DMDREADER
 	select BR2_PACKAGE_BOOST_LOG
 	select BR2_PACKAGE_LIBGPIOD
 
+	select BR2_PACKAGE_GLM
+        select BR2_INSTALL_LIBSTDCPP
+
+config BR2_PACKAGE_DMDREADER_OGL
+        bool "enable OpenGL ES support"
+        help
+          enables support for OpenGL ES displays on Pi4
+        depends on BR2_PACKAGE_DMDREADER
+	select BR2_PACKAGE_MESA3D
+	select BR2_PACKAGE_LIBDRM
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
+	select BR2_PACKAGE_MESA3D_DRIVER
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_V3D
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VC4
+	select BR2_PACKAGE_MESA3D_OPENGL_EGL
+	select BR2_PACKAGE_MESA3D_OPENGL_ES
+
+config BR2_PACKAGE_DMDREADER_VIDEO
+	bool "enable video player support"
+        help
+          enables support for videop player (required for PUP playback)
+        depends on BR2_PACKAGE_DMDREADER
+	select BR2_PACKAGE_FFMPEG

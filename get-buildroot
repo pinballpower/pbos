@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ "$1" == "" ]; then 
-	TAG=2023.05
+	TAG=2023.02
 else
 	TAG=$1
 fi
@@ -18,12 +18,13 @@ if [ -d $BRDIR ]; then
 	mv $BRDIR $BRDIR.bak
 fi
 
-echo "Checking out buildoot tag ${TAG} from Github"
+echo "Checking out buildroot tag ${TAG} from Github"
 git clone https://github.com/buildroot/buildroot $BRDIR
 
 echo "Checking out a known-good release"
 pushd $BRDIR
 git checkout $TAG
+popd
 
 echo "Symlinking to buildroot-pbos"
 rm buildroot-pbos

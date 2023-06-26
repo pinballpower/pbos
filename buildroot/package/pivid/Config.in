@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PIVID
+	bool "pivid"
+        help
+          PIVID video player fpr Raspberry Pi
+
+        select BR2_PACKAGE_LIBDRM
+        select BR2_PACKAGE_FFMPEG
+	select BR2_PACKAGE_DOCTEST

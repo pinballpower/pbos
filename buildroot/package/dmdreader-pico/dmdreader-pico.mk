@@ -7,7 +7,7 @@
 DMDREADER_PICO_VERSION=v0.1-alpha
 DMDREADER_PICO_BINARY_NAME=dmdreader.elf
 DMDREADER_PICO_SOURCE=$(DMDREADER_PICO_BINARY_NAME)
-DMDREADER_PICO_SITE=https://github.com/pinballpower/code_dmd/releases/download/$(DMDREADER_PICO_VERSION)$
+DMDREADER_PICO_SITE=https://github.com/pinballpower/code_dmd/releases/download/$(DMDREADER_PICO_VERSION)
 
 define DMDREADER_PICO_EXTRACT_CMDS
 endef
