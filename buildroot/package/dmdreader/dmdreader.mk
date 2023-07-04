@@ -4,14 +4,14 @@
 #
 ################################################################################
 
-DMDREADER_VERSION = 3707916f0e2f65856d3e50801b44bdbf8a1adde4
+DMDREADER_VERSION = c183fcff2b70c9a363d5f5e58776eb895f3586bd
 DMDREADER_SITE = https://github.com/pinballpower/code_dmdreader
 DMDREADER_SITE_METHOD = git
 DMDREADER_GIT_SUBMODULES = YES
 
 DMDREADER_DEPENDENCIES = boost rpi-firmware libgpiod
 
-DMDREADER_CONF_OPTS += -DFORCE_SPI=1 -DFORCE_LEDMATRIX=1 -DFORCE_SERUM=1
+DMDREADER_CONF_OPTS += -DFORCE_SPI=1 -DFORCE_LEDMATRIX=1 -DFORCE_SERUM=1 -DFORCE_VNI=1
 
 ifeq ($(BR2_PACKAGE_DMDREADER_OGL),y)
 DMDREADER_DEPENDENCIES += libdrm mesa3d ffmpeg
