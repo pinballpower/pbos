@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ "$1" == "" ]; then 
-	TAG=2023.02
+	TAG=2023.05
+	CID=da19c18af2d531b63b6d54f02dc2f16785756e66
 else
 	TAG=$1
 fi
@@ -19,12 +20,17 @@ if [ -d $BRDIR ]; then
 fi
 
 echo "Checking out buildroot tag ${TAG} from Github"
-git clone https://github.com/buildroot/buildroot $BRDIR
+git clone -v git://git.buildroot.net/buildroot $BRDIR
 
 echo "Checking out a known-good release"
 pushd $BRDIR
-git checkout $TAG
+if [ "$CID" != "" ]; then
+	git checkout $CID
+else
+	git checkout $TAG
+fi
 popd
+
 
 echo "Symlinking to buildroot-pbos"
 rm buildroot-pbos
