@@ -2,3 +2,4 @@ buildroot/package/enablewifi/wpa_supplicant.conf
 dist
 buildroot/VERSION
 wpa_supplicant.conf
+local
