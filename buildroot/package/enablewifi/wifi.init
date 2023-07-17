@@ -9,7 +9,6 @@ else
 	echo "Configuring $WIFI_INTERFACE"
 fi
 
-
 # Make sure /boot is mounted
 if [! -f /boot/config.txt ]; then
  mkdir /boot
@@ -35,4 +34,4 @@ while ! iw dev "$WIFI_INTERFACE" info >/dev/null 2>&1; do
 done
 
 # Obtain an IP address using DHCP
-udhcpc -i "$WIFI_INTERFACE"
+udhcpc -i "$WIFI_INTERFACE" -F `hostname`
